@@ -44,4 +44,37 @@ const bookStore = {
 }
 
 // Write your code here!
+const bookStoreTitle = document.getElementById('header');
+bookStoreTitle.textContent = bookStore.name;
 
+// Delete example
+const exampleLi = document.getElementById('delete-this');
+if (exampleLi) {
+  exampleLi.remove();
+}
+
+// Create elements for each book
+function createBookElement(book) {
+    const bookContainer = document.createElement('li');
+    const bookTitle = document.createElement('h3');
+    bookTitle.textContent = book.title;
+    const bookAuthor = document.createElement('p');
+    bookAuthor.textContent = book.author;
+    const bookImage = document.createElement('img');
+    bookImage.src = book.imageUrl;
+
+    //Append book elements to bookContainer
+    bookContainer.appendChild(bookTitle);~
+    bookContainer.appendChild(bookAuthor);
+    bookContainer.appendChild(bookImage);
+
+    return bookContainer
+}
+
+// Get the <ul> element where books will be added
+const bookList = document.getElementById('book-list');
+// Append each book's element to the book list
+bookStore.books.forEach((book)=>{
+    const bookElement = createBookElement(book); // Create DOM for this book
+    bookList.appendChild(bookElement);
+});
